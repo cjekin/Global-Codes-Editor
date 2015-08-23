@@ -40,3 +40,8 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+#tlc_data {
+    height: 30%;
+    overflow: scroll;
+}

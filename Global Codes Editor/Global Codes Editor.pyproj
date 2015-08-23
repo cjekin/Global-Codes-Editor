@@ -28,6 +28,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Global_Codes_Editor\sql.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="Global_Codes_Editor\__init__.py" />
     <Compile Include="Global_Codes_Editor\views.py" />
@@ -41,6 +44,8 @@
     <Folder Include="Global_Codes_Editor\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global_Codes_Editor\templates\tlc_editor_old.html" />
+    <Content Include="Global_Codes_Editor\templates\tlc_editor.html" />
     <Content Include="requirements.txt" />
     <Content Include="Global_Codes_Editor\static\content\bootstrap.css" />
     <Content Include="Global_Codes_Editor\static\content\bootstrap.min.css" />

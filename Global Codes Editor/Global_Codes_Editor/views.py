@@ -1,16 +1,16 @@
-"""
-Routes and views for the flask application.
-"""
-
+# Imports
+import pyodbc
 from datetime import datetime
-from flask import render_template
+from flask import render_template, jsonify, Response, request
 from Global_Codes_Editor import app
+import sql
 
+data = {}
 
+   
 @app.route('/')
 @app.route('/home')
 def home():
-    """Renders the home page."""
     return render_template(
         'index.html',
         title='Home Page',
@@ -19,13 +19,29 @@ def home():
 
 @app.route('/contact')
 def contact():
-    """Renders the contact page."""
     return render_template(
-        'contact.html',
-        title='Contact',
+        'tlc_editor.html',
+        title='TLC Editor',
         year=datetime.now().year,
-        message='Your contact page.'
     )
+
+@app.route('/preload_data')
+def preload_data():
+    global data
+    data['tlcs'] = sql.generic_sql('TLC', {})
+    print 'Finished loading: ', len(data['tlcs'])
+    return jsonify({'result':'OK'})
+
+@app.route('/tlc_data')
+def tlc_data():
+    origin = request.args.get('origin')
+    if origin == None:
+        origin = 'WSL_ALL_DW'
+    filters = {'Origin':origin}
+    data = sql.generic_sql('TLC',filters)
+    json_data = jsonify(data)
+    return json_data
+    
 
 @app.route('/about')
 def about():
