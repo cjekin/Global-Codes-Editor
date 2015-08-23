@@ -3,10 +3,8 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from functools import wraps
-from flask import render_template, request, Response
-from ChrisFirstProjecct import app
-import auth
+from flask import render_template
+from Global_Codes_Editor import app
 
 
 @app.route('/')
@@ -39,7 +37,3 @@ def about():
         message='Your application description page.'
     )
 
-@app.route('/secret-page')
-@requires_auth
-def secret_page():
-    return render_template('secret_page.html')
